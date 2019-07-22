@@ -20,7 +20,6 @@ instance.interceptors.request.use((config) => {
   return config;
 
 }, (error) => {
-
   // tslint:disable-next-line: no-console
   console.error(error)
   return Promise.reject(error);
