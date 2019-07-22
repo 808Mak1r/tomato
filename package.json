@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "antd": "^3.20.3",
+    "axios": "^0.19.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
     "react-scripts-ts-antd": "2.17.0"
   },
   "scripts": {
@@ -19,6 +21,7 @@
     "@types/node": "^12.6.8",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
+    "@types/react-router-dom": "^4.3.4",
     "typescript": "^3.5.3"
   }
 }
