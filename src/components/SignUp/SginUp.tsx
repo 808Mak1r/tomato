@@ -41,6 +41,7 @@ class SignUp extends React.Component<any,ISignUpState> {
 				password,
 				password_confirmation:passwordConformation
 			})
+			this.props.history.push('/')
 		}catch(e){
 			throw new Error(e)
 		}
@@ -51,7 +52,7 @@ class SignUp extends React.Component<any,ISignUpState> {
 		const { account,password,passwordConformation } = this.state;
 		return (
 			<div className="SignUp" id="SignUp">
-				<h1>番茄闹钟</h1>
+				<h1>番茄闹钟注册</h1>
 				<Input
 					placeholder="请输入你的用户名"
 					prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
