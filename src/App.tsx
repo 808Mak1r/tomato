@@ -1,21 +1,25 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import './App.scss';
-import Index from './components/Index/Index';
-import Login from './components/Login/Login';
-import SignUp from './components/SignUp/SginUp';
+// tslint:disable-next-line: ordered-imports
+import {Route, Router} from 'react-router-dom'
+import SignUp from 'src/components/SignUp/SginUp'
+import Index from './components/Index/Index'
+// tslint:disable-next-line: ordered-imports
+import Login from './components/Login/Login'
+import history from './config/history'
 
+class App extends React.Component{
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <Route path="/" exact={true} component={Index} />
-        <Route path="/login" component={Login} />
-        <Route path="/signUp" component={SignUp} />
-      </div>
-    </Router>
-  );
+	public render(){
+		return (
+			<Router history={history}>
+				<div>
+					<Route exact={true} path="/" component={Index}/>
+					<Route path="/login" component={Login}/>
+					<Route path="/signUp" component={SignUp}/>
+				</div>
+			</Router>
+		)
+	}
 }
 
 export default App
