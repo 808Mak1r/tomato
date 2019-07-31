@@ -55,7 +55,7 @@ class Login extends React.Component<any,ILoginState> {
           // tslint:disable-next-line: jsx-no-lambda
           onChange={(e) => this.onChange('password',e.target.value)}/>
 				<Button type="primary" className="loginButton" onClick={this.submit}>登录</Button>
-				<p>如果你没有有账号，请立即 <Link to="/signUp">注册</Link></p>
+				<p>如果你没有账号，请立即 <Link to="/signUp">注册</Link></p>
 			</div>
 		);
 	}
