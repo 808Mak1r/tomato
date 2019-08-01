@@ -1,4 +1,8 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import {addTodo} from "../../redux/actions";
+// tslint:disable-next-line: ordered-imports
+import axios from 'src/config/axios';
 // tslint:disable-next-line: ordered-imports
 import {Input,Icon} from 'antd';
 
@@ -7,7 +11,7 @@ interface ITodoInputState {
 }
 
 interface ITodoInputProps {
-	addTodo: (params:any) => void;
+	addTodo: (payload:any) => any;
 }
 
 class TodoInput extends React.Component<ITodoInputProps,ITodoInputState> {
@@ -16,22 +20,29 @@ class TodoInput extends React.Component<ITodoInputProps,ITodoInputState> {
 		this.state = {
 			description: ''
 		}
+		// tslint:disable-next-line: no-console
+		console.log(this.props)
 	}
 
 	public onKeyUp = (e) => {
 		if(e.keyCode === 13 && this.state.description !== ''){
-			this.addTodo()
+			this.postTodo()
 		}
 	}
 
-	public addTodo = ()=>{
-    this.props.addTodo({description: this.state.description})
-    this.setState({description: ''})
+	public postTodo = async ()=>{
+		try {
+			const response = await axios.post('todos',{description: this.state.description})
+			this.props.addTodo(response.data.resource)
+		}catch (e) {
+			throw new Error(e)
+		}
+		this.setState({description: ''})
 	}
 
 	public render() {
 		const { description } = this.state;
-		const suffix = description ? <Icon type="enter" onClick={this.addTodo}/> : <span/>;
+		const suffix = description ? <Icon type="enter" onClick={this.postTodo}/> : <span/>;
 		return (
       <div className="TodoInput" id="TodoInput">
 	      <Input
@@ -47,4 +58,12 @@ class TodoInput extends React.Component<ITodoInputProps,ITodoInputState> {
 	}
 }
 
-export default TodoInput;
+const mapStateToProps = (state, ownProps) => ({
+	...ownProps
+})
+
+const mapDispatchToProps = {
+	addTodo
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TodoInput);
