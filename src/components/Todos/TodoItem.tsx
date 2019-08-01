@@ -1,6 +1,11 @@
+// tslint:disable-next-line: ordered-imports
 import { Checkbox,Icon } from 'antd';
-import classNames from 'classnames'
+// tslint:disable-next-line: ordered-imports
+import classNames from 'classnames';
 import * as React from 'react';
+import { connect } from 'react-redux';
+import axios from "../../config/axios";
+import {editTodo, updateTodo} from '../../redux/actions'
 import './TodoItem.scss'
 
 interface ITodoItemProps {
@@ -8,8 +13,8 @@ interface ITodoItemProps {
 	description: string;
 	completed: boolean;
 	editing: boolean;
-	update: (id: number, params: any)=> void;
-	toEditing: (id: number) => void;
+	editTodo: (id:number)=>any;
+	updateTodo: (payload:any)=> any;
 }
 
 interface ITodoItemState {
@@ -24,17 +29,22 @@ class TodoItem extends React.Component<ITodoItemProps,ITodoItemState> {
 		}
 	}
 
-	public update = (params:any) => {
-		this.props.update(this.props.id,params)
+	public updateTodo = async (params:any) => {
+		try {
+			const response = await axios.put(`todos/${this.props.id}`,params)
+			this.props.updateTodo(response.data.resource)
+		}catch (e) {
+			throw new Error(e)
+		}
 	}
 
-	public toEditing = () => {
-		this.props.toEditing(this.props.id)
+	public editTodo = () => {
+		this.props.editTodo(this.props.id)
 	}
 
 	public onKeyUp = (e)=>{
 		if(e.keyCode === 13 && this.state.editText !== ''){
-			this.update({description: this.state.editText})
+			this.updateTodo({description: this.state.editText})
 		}
 	}
 
@@ -50,22 +60,22 @@ class TodoItem extends React.Component<ITodoItemProps,ITodoItemState> {
 					<Icon type="enter" />
 					<Icon type="delete" theme="filled"
 					      // tslint:disable-next-line: jsx-no-lambda
-					      onClick={e => this.update({deleted: true})}/>
+					      onClick={e => this.updateTodo({deleted: true})}/>
 				</div>
 			</div>
 		)
-		const Text = <span className="text" onDoubleClick={this.toEditing}>{this.props.description}</span>
-    const todoItemClass = classNames({
-      TodoItem: true,
-      editing: this.props.editing,
-      // tslint:disable-next-line: object-literal-sort-keys
-      completed: this.props.completed
-    })
-    return (
+		const Text = <span className="text" onDoubleClick={this.editTodo}>{this.props.description}</span>
+		const todoItemClass = classNames({
+			TodoItem: true,
+			editing: this.props.editing,
+			// tslint:disable-next-line: object-literal-sort-keys
+			completed: this.props.completed
+		})
+		return (
 			<div className={todoItemClass} id="TodoItem">
 				<Checkbox checked={this.props.completed}
 				          // tslint:disable-next-line: jsx-no-lambda
-				          onChange={e=> this.update({completed: e.target.checked})}
+				          onChange={e=> this.updateTodo({completed: e.target.checked})}
 				/>
 				{this.props.editing?Editing:Text}
 			</div>
@@ -73,4 +83,13 @@ class TodoItem extends React.Component<ITodoItemProps,ITodoItemState> {
 	}
 }
 
-export default TodoItem;
+const mapStateToProps = (state, ownProps) => ({
+	...ownProps
+})
+
+const mapDispatchToProps = {
+	editTodo,
+	updateTodo
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TodoItem);
