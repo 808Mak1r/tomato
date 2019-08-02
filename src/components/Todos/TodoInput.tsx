@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import {addTodo} from "../../redux/actions";
+import {addTodo} from "../../redux/actions/todos";
 // tslint:disable-next-line: ordered-imports
 import axios from 'src/config/axios';
 // tslint:disable-next-line: ordered-imports
@@ -20,8 +20,6 @@ class TodoInput extends React.Component<ITodoInputProps,ITodoInputState> {
 		this.state = {
 			description: ''
 		}
-		// tslint:disable-next-line: no-console
-		console.log(this.props)
 	}
 
 	public onKeyUp = (e) => {
