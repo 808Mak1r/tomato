@@ -3,7 +3,7 @@ import {ADD_TODO,EDIT_TODO,INIT_TODOS,UPDATE_TODO} from '../actionTypes'
 export default (state:any[] = [], action:any) => {
   switch(action.type){
     case ADD_TODO:
-      return [state,...action.payload]
+      return [...state,action.payload];
     case INIT_TODOS:
       return [...action.payload]
     case UPDATE_TODO:

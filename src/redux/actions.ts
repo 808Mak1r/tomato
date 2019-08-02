@@ -1,4 +1,4 @@
-import {ADD_TODO, EDIT_TODO,INIT_TODOS,UPDATE_TODO} from './actionTypes'
+import {ADD_TODO, ADD_TOMATO,EDIT_TODO,INIT_TODOS, UPDATE_TODO} from './actionTypes'
 
 
 export const addTodo = (payload:any) => {
@@ -28,6 +28,14 @@ export const updateTodo = (payload:any)=>{
 export const editTodo = (payload:number)=>{
   return{
     type: EDIT_TODO,
+    // tslint:disable-next-line: object-literal-sort-keys
+    payload
+  }
+}
+
+export const addToamto = (payload:any)=>{
+  return{
+    type: ADD_TOMATO,
     // tslint:disable-next-line: object-literal-sort-keys
     payload
   }
