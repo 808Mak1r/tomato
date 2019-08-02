@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TodoInput from 'src/components/Todos/TodoInput'
 import TodoItem from  'src/components/Todos/TodoItem'
 import axios from 'src/config/axios'
-import {initTodos,updateTodo} from "../../redux/actions";
+import {initTodos,updateTodo} from "../../redux/actions/todos";
 import './Todos.scss'
 
 class Todos extends React.Component<any> {

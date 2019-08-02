@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import axios from "../../config/axios";
-import {editTodo, updateTodo} from '../../redux/actions'
+import {editTodo, updateTodo} from '../../redux/actions/todos'
 import './TodoItem.scss'
 
 interface ITodoItemProps {
