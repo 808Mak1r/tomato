@@ -1,6 +1,4 @@
-// tslint:disable-next-line: ordered-imports
 import { Checkbox,Icon } from 'antd';
-// tslint:disable-next-line: ordered-imports
 import classNames from 'classnames';
 import * as React from 'react';
 import { connect } from 'react-redux';

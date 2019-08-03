@@ -1,10 +1,8 @@
+import {Icon,Input} from 'antd';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import {addTodo} from "../../redux/actions/todos";
-// tslint:disable-next-line: ordered-imports
 import axios from 'src/config/axios';
-// tslint:disable-next-line: ordered-imports
-import {Input,Icon} from 'antd';
+import {addTodo} from "../../redux/actions/todos";
 
 interface ITodoInputState {
 	description: string;
