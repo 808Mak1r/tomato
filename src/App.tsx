@@ -1,10 +1,10 @@
 import * as React from 'react';
 // tslint:disable-next-line: ordered-imports
 import {Route, Router} from 'react-router-dom'
-import SignUp from 'src/components/SignUp/SginUp'
 import Home from './components/Home/Home'
 // tslint:disable-next-line: ordered-imports
 import Login from './components/Login/Login'
+import SignUp from './components/SignUp/SignUp'
 import history from './config/history'
 
 class App extends React.Component{

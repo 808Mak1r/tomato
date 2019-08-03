@@ -1,37 +1,40 @@
 import * as React from 'react';
+// tslint:disable-next-line: ordered-imports
 import {connect} from 'react-redux';
 import axios from "../../config/axios";
-import {addTomato, initTomatoes} from "../../redux/actions/tomatoes";
+// tslint:disable-next-line: ordered-imports
+import {addTomato, initTomatoes, updateTomato} from "../../redux/actions/tomatoes";
 import TomatoAction from './TomatoAction'
 import './Tomatoes.scss'
 
 interface ITomatoesProps {
-  addTomato: (payload: any) => any;
-  tomatoes: any[];
+	addTomato: (payload: any) => any;
+	updateTomato: (payload: any) => any;
+	initTomatoes: (payload: any[]) => any;
+	tomatoes: any[];
 }
 
 class Tomatoes extends React.Component<ITomatoesProps> {
 	constructor(props){
 		super(props)
-  }
-  
-  public componentDidMount(){
-    this.getTomatoes()
-  }
+	}
 
-  get unfinishedTomato(){
-    return this.props.tomatoes.filter(t => !t.description && !t.ender_at )[0]
-  }
+	public componentDidMount(){
+		this.getTomatoes()
+	}
 
-  public getTomatoes = async ()=>{
-    try{
-      const response = await axios.get('tomatoes')
-      // tslint:disable-next-line: no-console
-      console.log(response.data)
-    }catch(e){
-      throw new Error(e)
-    }
-  }
+	get unfinishedTomato(){
+		return this.props.tomatoes.filter(t => !t.description && !t.ended_at)[0]
+	}
+
+	public getTomatoes = async ()=>{
+		try {
+			const response = await axios.get('tomatoes')
+			this.props.initTomatoes(response.data.resources)
+		}catch (e) {
+			throw new Error(e)
+		}
+	}
 
 	public startTomato = async ()=>{
 		try{
@@ -45,7 +48,7 @@ class Tomatoes extends React.Component<ITomatoesProps> {
 	public render() {
 		return (
 			<div className="Tomatoes" id="Tomatoes">
-				<TomatoAction startTomato={this.startTomato} unfinishedTomato={this.unfinishedTomato}/>
+				<TomatoAction startTomato={this.startTomato} unfinishedTomato={this.unfinishedTomato} updateTomato={this.props.updateTomato}/>
 			</div>
 		);
 	}
@@ -58,6 +61,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = {
 	addTomato,
+	updateTomato,
+	// tslint:disable-next-line: object-literal-sort-keys
 	initTomatoes
 }
 

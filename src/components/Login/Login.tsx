@@ -1,6 +1,5 @@
+import { Button, Icon, Input } from 'antd';
 import * as React from 'react';
-// tslint:disable-next-line: ordered-imports
-import { Input, Icon, Button } from 'antd';
 import {Link} from 'react-router-dom';
 import axios from 'src/config/axios'
 
@@ -43,7 +42,7 @@ class Login extends React.Component<any,ILoginState> {
 		const { account,password } = this.state;
 		return (
 			<div className="Login" id="Login">
-				<h1>番茄闹钟登录</h1>
+				<h1>番茄闹钟毕设登录</h1>
 				<Input
 					placeholder="请输入你的用户名"
 					prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -51,11 +50,11 @@ class Login extends React.Component<any,ILoginState> {
 					// tslint:disable-next-line: jsx-no-lambda
 					onChange={(e) => this.onChange('account',e.target.value)}
 				/>
-        <Input.Password value={password} placeholder="请输入密码" 
-          // tslint:disable-next-line: jsx-no-lambda
-          onChange={(e) => this.onChange('password',e.target.value)}/>
+				<Input.Password value={password} placeholder="请输入密码" 
+					// tslint:disable-next-line: jsx-no-lambda
+					onChange={(e) => this.onChange('password',e.target.value)}/>
 				<Button type="primary" className="loginButton" onClick={this.submit}>登录</Button>
-				<p>如果你没有账号，请立即 <Link to="/signUp">注册</Link></p>
+				<p>如果你没有有账号，请立即 <Link to="/signUp">注册</Link></p>
 			</div>
 		);
 	}
