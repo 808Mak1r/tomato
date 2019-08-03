@@ -15,12 +15,12 @@ const CountDownHook:FunctionComponent<ICountDownHookProps> = (props)=>{
 	const time = `${min}:${second<10?`0${second}`:second}`
 
 	useEffect(() => {
-		document.title = `${time} - 饥人谷番茄APP`;
+		document.title = `${time} - 番茄APP`;
 		timerId = setInterval(()=>{
 			setCountDown(countDown - 1000)
 			if(countDown < 0){
 				props.onFinish()
-				document.title = `饥人谷番茄APP`;
+				document.title = `番茄APP`;
 				clearInterval(timerId)
 			}
 		},1000)
