@@ -5,7 +5,7 @@ import {format} from 'date-fns'
 import {connect} from 'react-redux';
 import axios from "../../config/axios";
 // tslint:disable-next-line: ordered-imports
-import {addTomato, initTomatoes, updateTomato} from "../../redux/actions/tomatoes";
+import {addTomato,updateTomato} from "../../redux/actions/tomatoes";
 import TomatoAction from './TomatoAction'
 import './Tomatoes.scss'
 import TomatoList from './TomatoList'
@@ -14,17 +14,12 @@ import TomatoList from './TomatoList'
 interface ITomatoesProps {
 	addTomato: (payload: any) => any;
 	updateTomato: (payload: any) => any;
-	initTomatoes: (payload: any[]) => any;
 	tomatoes: any[];
 }
 
 class Tomatoes extends React.Component<ITomatoesProps> {
 	constructor(props){
 		super(props)
-	}
-
-	public componentDidMount(){
-		this.getTomatoes()
 	}
 
 	get unfinishedTomato(){
@@ -37,15 +32,6 @@ class Tomatoes extends React.Component<ITomatoesProps> {
 			return format(tomato.started_at,'YYYY-MM-D')
 		})
 		return obj
-	}
-
-	public getTomatoes = async ()=>{
-		try {
-			const response = await axios.get('tomatoes')
-			this.props.initTomatoes(response.data.resources)
-		}catch (e) {
-			throw new Error(e)
-		}
 	}
 
 	public startTomato = async ()=>{
@@ -75,8 +61,6 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = {
 	addTomato,
 	updateTomato,
-	// tslint:disable-next-line: object-literal-sort-keys
-	initTomatoes
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Tomatoes);
