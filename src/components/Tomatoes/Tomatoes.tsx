@@ -1,11 +1,15 @@
+import _ from 'lodash'
 import * as React from 'react';
 // tslint:disable-next-line: ordered-imports
+import {format} from 'date-fns'
 import {connect} from 'react-redux';
 import axios from "../../config/axios";
 // tslint:disable-next-line: ordered-imports
 import {addTomato, initTomatoes, updateTomato} from "../../redux/actions/tomatoes";
 import TomatoAction from './TomatoAction'
 import './Tomatoes.scss'
+import TomatoList from './TomatoList'
+
 
 interface ITomatoesProps {
 	addTomato: (payload: any) => any;
@@ -25,6 +29,14 @@ class Tomatoes extends React.Component<ITomatoesProps> {
 
 	get unfinishedTomato(){
 		return this.props.tomatoes.filter(t => !t.description && !t.ended_at && !t.aborted)[0]
+	}
+
+	get finishedTomatoes(){
+		const finishedTomatoes = this.props.tomatoes.filter(t => t.description && t.ended_at && !t.aborted)
+		const obj = _.groupBy(finishedTomatoes,(tomato)=>{
+			return format(tomato.started_at,'YYYY-MM-D')
+		})
+		return obj
 	}
 
 	public getTomatoes = async ()=>{
@@ -49,6 +61,7 @@ class Tomatoes extends React.Component<ITomatoesProps> {
 		return (
 			<div className="Tomatoes" id="Tomatoes">
 				<TomatoAction startTomato={this.startTomato} unfinishedTomato={this.unfinishedTomato} updateTomato={this.props.updateTomato}/>
+				<TomatoList finishedTomatoes={this.finishedTomatoes}/>
 			</div>
 		);
 	}
