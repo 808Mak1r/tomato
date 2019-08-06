@@ -15,6 +15,10 @@ interface IIndexState {
 	user: any
 }
 
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/font_1336289_uz557xbjqy.js'
+});
+
 const logout = ()=>{
 	localStorage.setItem('x-token','')
 	history.push('/login')
@@ -70,7 +74,10 @@ class Home extends React.Component<any,IIndexState> {
 		return (
 			<div className="Home" id="Home">
 				<header>
-					<span className="logo">LOGO</span>
+					<h1>
+						<IconFont className="logo" type="icon-xihongshi" />
+						番茄闹钟
+					</h1>
 					<Dropdown overlay={menu}>
 						<span>
 							{this.state.user && this.state.user.account}
