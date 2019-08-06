@@ -30,12 +30,12 @@
 
 ### 预览
 1. 登陆& 注册
-![登录.jpg](https://i.loli.net/2019/08/06/LjMPsCG6vpgKDEe.jpg)
-![注册.jpg](https://i.loli.net/2019/08/06/78ExXjw3s2Yp4Ug.jpg)
+![登录.jpg](https://i.loli.net/2019/08/06/ZawPRY2beEzn8uV.jpg)
+![注册.jpg](https://i.loli.net/2019/08/06/UkLXVpmfQcMFyAh.jpg)
 2. 首页（主页面）
   - 番茄 & 任务
-![home.jpg](https://i.loli.net/2019/08/06/YJairUSXcQCxos3.jpg)
+![home.jpg](https://i.loli.net/2019/08/06/jdpwovTA37gqQMK.jpg)
   - 月统计数据
-![todo1.jpg](https://i.loli.net/2019/08/06/MlYgruUd3AJ6a1P.jpg)
-![todo2.jpg](https://i.loli.net/2019/08/06/xUKulpCorRhyJGH.jpg)
+![todo1.jpg](https://i.loli.net/2019/08/06/8vZtkdemAXcPNfw.jpg)
+![todo2.jpg](https://i.loli.net/2019/08/06/6BIsWzX3cSQ2oZM.jpg)
 
