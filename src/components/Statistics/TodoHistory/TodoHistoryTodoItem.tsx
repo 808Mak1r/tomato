@@ -37,7 +37,7 @@ class TodoHistoryTodoItem extends React.Component<ITodoHistoryTodoItemProps>{
         <div className="action">
           <span 
             // tslint:disable-next-line: jsx-no-lambda
-            onClick={()=>this.updateTodo({finished: false})}>恢复</span>
+            onClick={()=>this.updateTodo({completed: false})}>恢复</span>
           <span 
             // tslint:disable-next-line: jsx-no-lambda
             onClick={()=>this.updateTodo({deleted: true})}>删除</span>
