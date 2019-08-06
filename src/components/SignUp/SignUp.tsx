@@ -1,8 +1,8 @@
-// tslint:disable-next-line: ordered-imports
 import { Button, Icon, Input } from 'antd';
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'src/config/axios'
+
 import './SignUp.scss'
 
 interface ISignUpState {
@@ -47,7 +47,6 @@ class SignUp extends React.Component<any,ISignUpState> {
 		}
 	}
 
-
 	public render() {
 		const { account,password,passwordConformation } = this.state;
 		return (
@@ -62,9 +61,9 @@ class SignUp extends React.Component<any,ISignUpState> {
 				<Input.Password value={password} placeholder="请输入密码" onChange={this.onChangePassword}/>
 				<Input.Password value={passwordConformation} placeholder="请确认密码" onChange={this.onChangePasswordConformation}/>
 				<Button type="primary" className="signUpButton" onClick={this.submit}>注册</Button>
-				<p>如果你有账号请马上去 <Link to="/login">登录</Link></p>
+				<p>如果你有账号，请立即 <Link to="/login">登录</Link></p>
 			</div>
-		)
+		);
 	}
 }
 
