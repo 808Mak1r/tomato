@@ -22,6 +22,7 @@
 - react
 - react-router
 - react-redux
+- create-react-app
 - TypeScript
 - axios
 - ant-design
